@@ -1,0 +1,1 @@
+const unreadNotificationCountDummyData = 6;

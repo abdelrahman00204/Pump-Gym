@@ -1,0 +1,98 @@
+name: pump_gym
+description: "PUMP Gym OS — single Flutter app, User Interface + Admin Interface (spec v2.0)."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.4.0 <4.0.0'
+  flutter: '>=3.24.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+  # --- State management (§4.2) — Riverpod only, no BLoC/Provider mixed in ---
+  flutter_riverpod: ^2.5.1
+  riverpod_annotation: ^2.3.5
+
+  # --- Routing (§4.2) — go_router only, single source of routes ---
+  go_router: ^14.2.7
+
+  # --- Networking (§4.2 / §4.5) ---
+  dio: ^5.5.0
+
+  # --- Auth token storage (§4.2) — same package on mobile/desktop; ---
+  # --- web falls back to its own secure storage automatically. ---
+  flutter_secure_storage: ^9.2.2
+
+  # --- Realtime (§5.7) — SignalR hub for occupancy/live updates ---
+  signalr_netcore: ^1.3.6
+
+  # --- QR (§2.5, §4.6) ---
+  qr_flutter: ^4.1.0
+  mobile_scanner: ^7.4.2
+
+
+
+  # --- Forms/validation (§4.2) ---
+  flutter_hooks: ^0.20.5
+  formz: ^0.7.0
+
+  # --- Typography (§2.3) — Anton (display) + Inter (body/label) ---
+  google_fonts: ^6.2.1
+
+  # --- Iconography (§2.6) — 1:1 parity with the Lucide set ---
+  lucide_icons: ^0.257.0
+
+  # --- Localization (§2.7 — using easy_localization's JSON files instead ---
+  # --- of intl's .arb; see assets/translations/. intl stays as a transitive
+  # --- need for date/number formatting elsewhere in the app.) ---
+  easy_localization: ^3.0.7
+
+  # --- Env config (§4.7 / §12.3) — API_BASE_URL, SIGNALR_HUB_URL, etc. ---
+  flutter_dotenv: ^5.1.0
+
+  # --- Monitoring (§9.1) — backend + app telemetry to Application Insights ---
+  azure_application_insights: ^5.0.1
+
+  cupertino_icons: ^1.0.8
+  pdf: ^3.12.0
+  printing: ^5.14.3
+  flutter_screenutil: ^5.9.3
+
+  # --- Mock API layer (this is the MSW equivalent — see lib/api/mock/) ---
+  # Lives in `dependencies`, not `dev_dependencies`, because it's swapped in
+  # at runtime via a --dart-define flag, not just used in tests.
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+  shared_preferences: ^2.5.5
+
+  # --- Testing (§4.2) ---
+  mocktail: ^1.0.4
+  patrol: ^3.13.0
+
+  # --- Codegen ---
+  build_runner: ^2.4.13
+  riverpod_generator: ^2.4.3
+  # openapi_generator: ^5.0.0
+  # ^ enable once pump-backend's docs/openapi.json is published (§3, §11.2)
+  # so lib/models + lib/api can be generated from it instead of hand-written.
+
+flutter:
+  uses-material-design: true
+  assets:
+    - .env
+    - assets/translations/
+    # - assets/images/
+
+dependency_overrides:
+  # pdf 3.12 restricts archive to <4.1; use an image version compatible with it.
+  image: 4.8.0
+
+# Reminder (Definition of Done, §11.3): every new user-facing string must be
+# added to BOTH assets/translations/en.json and assets/translations/ar.json.
