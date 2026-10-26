@@ -12,6 +12,8 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
+  flutter_web_plugins:
+    sdk: flutter
 
   # --- State management (§4.2) — Riverpod only, no BLoC/Provider mixed in ---
   flutter_riverpod: ^2.5.1

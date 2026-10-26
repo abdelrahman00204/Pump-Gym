@@ -6,10 +6,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pump_gym/constants/app_routes.dart';
 import 'package:pump_gym/theme/pump_theme.dart';
 import 'package:pump_gym/theme/theme_provider.dart';
+import 'package:flutter_web_plugins/url_strategy.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
+  usePathUrlStrategy();
   runApp(
     const ProviderScope(
       child: MyApp(),
